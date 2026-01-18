@@ -1,5 +1,6 @@
 package com.ecommerce.backend.entity.cart;
 
+import com.ecommerce.backend.entity.product.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,9 +15,21 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cardItemId;
+    @ManyToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
+    @Column(nullable = false)
     private Integer quantity;
-    private double discount;
-    private double productPrice;
+
+    @Column
+    private Double discount;
+
+    @Column(name = "product_price")
+    private Double productPrice;
 
 }
