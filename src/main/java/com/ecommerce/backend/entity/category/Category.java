@@ -21,6 +21,7 @@ public class Category {
     private Long categoryId;
 
     @NotBlank
+    @Size(min = 3,message = "category name must contain at least 3 characters")
     @Column(name = "category_name", nullable = false)
     private String categoryName;
 

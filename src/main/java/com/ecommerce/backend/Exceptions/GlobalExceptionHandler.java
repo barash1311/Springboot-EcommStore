@@ -1,7 +1,9 @@
 package com.ecommerce.backend.Exceptions;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -40,5 +42,35 @@ public class GlobalExceptionHandler {
     response.put("error", "Internal Server Error");
     response.put("message", ex.getMessage());
     return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+  @ExceptionHandler(ConstraintViolationException.class)
+  public ResponseEntity<Map<String, Object>> handleConstraintViolation(ConstraintViolationException ex) {
+    String message = ex.getConstraintViolations().stream()
+            .map(v -> v.getPropertyPath() + ": " + v.getMessage())
+            .findFirst()
+            .orElse("Validation error");
+
+    Map<String, Object> response = new HashMap<>();
+    response.put("error", "Validation Failed");
+    response.put("message", message);
+    response.put("status", 400);
+    response.put("timestamp", LocalDateTime.now());
+
+    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+  }
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ResponseEntity<Map<String, Object>> handleValidationErrors(MethodArgumentNotValidException ex) {
+    String message = ex.getBindingResult().getFieldErrors().stream()
+            .map(error -> error.getField() + ": " + error.getDefaultMessage())
+            .findFirst()
+            .orElse("Validation error");
+
+    Map<String, Object> response = new HashMap<>();
+    response.put("timestamp", LocalDateTime.now());
+    response.put("status", HttpStatus.BAD_REQUEST.value());
+    response.put("error", "Validation Failed");
+    response.put("message", message);
+
+    return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
   }
 }
