@@ -114,21 +114,11 @@ public class CategoryServiceImplementation implements CategoryService {
 
 
     @Override
-    public CategoryResponse deleteCategory(Long categoryId) {
+    public void deleteCategory(Long categoryId) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
 
         categoryRepository.delete(category);
 
-        CategoryResponse.CategoryData categoryData = modelMapper.map(category, CategoryResponse.CategoryData.class);
-
-        return CategoryResponse.builder()
-                .content(List.of(categoryData))
-                .pageNumber(0)
-                .pageSize(1)
-                .totalElements(1L)
-                .totalPages(1)
-                .lastPage(true)
-                .build();
     }
 }
