@@ -28,7 +28,7 @@ public class User {
     private Long userId;
     @NotBlank
     @Size(max = 50)
-    private String username;
+    private String userName;
     @NotBlank
     @Email
     @Size(max = 120)
