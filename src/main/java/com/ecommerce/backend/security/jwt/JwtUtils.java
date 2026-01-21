@@ -34,6 +34,7 @@ public class JwtUtils {
         return cookie != null ? cookie.getValue() : null;
     }
 
+
     public String getJwtFromHeader(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         return (header != null && header.startsWith("Bearer "))
