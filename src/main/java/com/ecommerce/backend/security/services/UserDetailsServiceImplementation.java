@@ -1,8 +1,7 @@
-package com.ecommerce.backend.security;
+package com.ecommerce.backend.security.services;
 
 import com.ecommerce.backend.entity.user.User;
 import com.ecommerce.backend.repository.UserRepository;
-import org.jspecify.annotations.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

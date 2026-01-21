@@ -33,4 +33,9 @@ public class UserRole {
     private LocalDateTime updatedAt;
     @Column(name = "assigned_by")
     private String assignedBy;
+
+    public UserRole(User user, Role role) {
+        this.user = user;
+        this.role = role;
+    }
 }

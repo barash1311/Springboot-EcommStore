@@ -31,4 +31,8 @@ public class Role {
             orphanRemoval = true
     )
     private Set<UserRole> userRoles;
+
+    public Role(AppRole roleName) {
+        this.roleName = roleName;
+    }
 }

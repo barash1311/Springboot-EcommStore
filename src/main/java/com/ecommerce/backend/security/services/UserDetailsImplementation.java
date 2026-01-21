@@ -1,4 +1,4 @@
-package com.ecommerce.backend.security;
+package com.ecommerce.backend.security.services;
 
 import com.ecommerce.backend.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
