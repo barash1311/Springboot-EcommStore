@@ -3,10 +3,10 @@ package com.ecommerce.backend.service;
 
 import com.ecommerce.backend.Exceptions.APIException;
 import com.ecommerce.backend.Exceptions.ResourceNotFoundException;
-import com.ecommerce.backend.dto.CartItemRequest;
-import com.ecommerce.backend.dto.CartItemResponse;
-import com.ecommerce.backend.dto.CartRequest;
-import com.ecommerce.backend.dto.CartResponse;
+import com.ecommerce.backend.dto.cartItem.CartItemRequest;
+import com.ecommerce.backend.dto.cartItem.CartItemResponse;
+import com.ecommerce.backend.dto.cart.CartRequest;
+import com.ecommerce.backend.dto.cart.CartResponse;
 import com.ecommerce.backend.entity.cart.Cart;
 import com.ecommerce.backend.entity.cart.CartItem;
 import com.ecommerce.backend.entity.product.Product;
