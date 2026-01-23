@@ -1,16 +1,15 @@
-package com.ecommerce.backend.dto;
+package com.ecommerce.backend.dto.cartItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class CartRequest {
-    private List<CartItemRequest> items;
+public class CartItemRequest {
+    private Long productId;
+    private Integer quantity;
 }

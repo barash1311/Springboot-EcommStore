@@ -1,8 +1,8 @@
 package com.ecommerce.backend.service;
 
-import com.ecommerce.backend.dto.CartItemRequest;
-import com.ecommerce.backend.dto.CartRequest;
-import com.ecommerce.backend.dto.CartResponse;
+import com.ecommerce.backend.dto.cartItem.CartItemRequest;
+import com.ecommerce.backend.dto.cart.CartRequest;
+import com.ecommerce.backend.dto.cart.CartResponse;
 
 import java.util.List;
 

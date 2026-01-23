@@ -1,12 +1,9 @@
 package com.ecommerce.backend.controller;
 
-import com.ecommerce.backend.dto.CartItemRequest;
-import com.ecommerce.backend.dto.CartItemResponse;
-import com.ecommerce.backend.dto.CartRequest;
-import com.ecommerce.backend.dto.CartResponse;
-import com.ecommerce.backend.repository.CartRepository;
+import com.ecommerce.backend.dto.cartItem.CartItemRequest;
+import com.ecommerce.backend.dto.cart.CartRequest;
+import com.ecommerce.backend.dto.cart.CartResponse;
 import com.ecommerce.backend.service.CartService;
-import com.ecommerce.backend.utils.AuthUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

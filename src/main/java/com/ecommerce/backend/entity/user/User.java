@@ -1,6 +1,7 @@
 package com.ecommerce.backend.entity.user;
 
-import com.ecommerce.backend.entity.role.Role;
+import com.ecommerce.backend.entity.address.Address;
+
 import com.ecommerce.backend.entity.role.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -10,6 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+import java.util.List;
 import java.util.Set;
 
 
@@ -39,9 +42,17 @@ public class User {
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
     )
     private Set<UserRole> userRoles;
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Address> addresses;
 
     public User(String userName, String email, String password) {
         this.userName = userName;
