@@ -1,5 +1,7 @@
 package com.ecommerce.backend.Exceptions;
 
+import com.ecommerce.backend.dto.PaymentResponse;
+import com.stripe.exception.StripeException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,5 +85,16 @@ public class GlobalExceptionHandler {
     response.put("message", ex.getMessage());
 
     return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+  @ExceptionHandler(StripeException.class)
+  public ResponseEntity<PaymentResponse> handleStripeException(StripeException ex) {
+    String message = ex.getMessage();
+    PaymentResponse apiResponse = new PaymentResponse(
+            null,
+            "failed",
+            "stripe",
+            message
+    );
+    return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
   }
 }
