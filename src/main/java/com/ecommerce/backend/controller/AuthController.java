@@ -29,7 +29,7 @@ public class AuthController {
         SignInResponse response = authService.signIn(request);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, response.getJwtCookie().toString())
+                .header(HttpHeaders.SET_COOKIE, response.getJwtToken())
                 .body(response);
     }
 
