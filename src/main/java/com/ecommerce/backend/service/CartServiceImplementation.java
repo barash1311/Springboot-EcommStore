@@ -66,7 +66,7 @@ public class CartServiceImplementation implements  CartService {
             throw new ResourceNotFoundException("Cart", "email", emailId);
         }
 
-        CartItem cartItem = cartItemRepository.findCartItemByProduct_ProductIdAndCart_CartId(
+        CartItem cartItem = cartItemRepository.findCartItemByProductIdAndCartId(
                 cart.getCartId(), productId);
 
         if (cartItem == null) {
@@ -76,7 +76,7 @@ public class CartServiceImplementation implements  CartService {
         cart.setTotalPrice(cart.getTotalPrice() -
                 (cartItem.getProductPrice() * cartItem.getQuantity()));
 
-        cartItemRepository.deleteCartItemByProduct_ProductIdAndCart_CartId(
+        cartItemRepository.deleteCartItemByProductIdAndCartId(
                 cart.getCartId(), productId);
 
         cartRepository.save(cart);
@@ -214,7 +214,7 @@ public class CartServiceImplementation implements  CartService {
         }
 
         // Clear existing items
-        cartItemRepository.deleteAllByCart_CartId(cart.getCartId());
+        cartItemRepository.deleteAllByCartId(cart.getCartId());
         cart.setTotalPrice(0.00);
 
         if (request.getItems() != null && !request.getItems().isEmpty()) {
