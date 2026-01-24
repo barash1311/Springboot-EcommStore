@@ -32,7 +32,7 @@ public class SwaggerConfig {
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("Barash Sharma")
-                                .email("barash@example.com")
+                                .email("barash@gmail.com")
                                 .url("https://github.com/barash1311"))
                         .license(new License()
                                 .name("MIT License")
