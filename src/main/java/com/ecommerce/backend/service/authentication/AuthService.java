@@ -4,7 +4,6 @@ import com.ecommerce.backend.dto.authentication.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseCookie;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 
 public interface AuthService {
@@ -19,5 +18,5 @@ public interface AuthService {
     UserInfoDTO getCurrentUser(Authentication authentication);
 
     // ---------- SELLERS ----------
-    Object getAllSellers(Pageable pageable);
+    Page<?> getAllSellers(Pageable pageable);
 }

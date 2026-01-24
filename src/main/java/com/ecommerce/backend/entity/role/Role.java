@@ -1,16 +1,16 @@
 package com.ecommerce.backend.entity.role;
 
 import com.ecommerce.backend.entity.Enums.AppRole;
-import com.ecommerce.backend.entity.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,5 +34,18 @@ public class Role {
 
     public Role(AppRole roleName) {
         this.roleName = roleName;
+    }
+
+    @Override
+    public int hashCode() {
+        return roleName != null ? roleName.hashCode() : 0;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Role role = (Role) obj;
+        return roleName == role.roleName;
     }
 }

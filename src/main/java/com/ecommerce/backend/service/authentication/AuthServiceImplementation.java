@@ -9,6 +9,7 @@ import com.ecommerce.backend.repository.UserRepository;
 import com.ecommerce.backend.security.jwt.JwtUtils;
 import com.ecommerce.backend.security.services.UserDetailsImplementation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,7 +46,6 @@ public class AuthServiceImplementation implements AuthService {
 
         UserDetailsImplementation userDetails = (UserDetailsImplementation) authentication.getPrincipal();
         String jwt = jwtUtils.generateTokenFromUsername(userDetails.getUsername());
-        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
         User user = userRepository.findByUserName(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -133,7 +133,7 @@ public class AuthServiceImplementation implements AuthService {
     }
 
     @Override
-    public Object getAllSellers(Pageable pageable) {
+    public Page<?> getAllSellers(Pageable pageable) {
         return userRepository.findAllSellers(pageable);
     }
 }

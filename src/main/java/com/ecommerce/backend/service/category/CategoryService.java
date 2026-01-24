@@ -2,8 +2,6 @@ package com.ecommerce.backend.service.category;
 
 import com.ecommerce.backend.dto.category.CategoryRequest;
 import com.ecommerce.backend.dto.category.CategoryResponse;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 
 public interface CategoryService {

@@ -9,6 +9,7 @@ import com.ecommerce.backend.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) {
         Role userRole = roleRepository.findByRoleName(AppRole.ROLE_USER)
                 .orElseGet(() -> roleRepository.save(new Role(AppRole.ROLE_USER)));
