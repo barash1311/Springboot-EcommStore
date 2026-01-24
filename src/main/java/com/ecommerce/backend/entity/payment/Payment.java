@@ -1,5 +1,6 @@
 package com.ecommerce.backend.entity.payment;
 
+import com.ecommerce.backend.entity.order.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,4 +29,8 @@ public class Payment {
 
     @Column(name = "pg_name")
     private String pgName;
+
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 }

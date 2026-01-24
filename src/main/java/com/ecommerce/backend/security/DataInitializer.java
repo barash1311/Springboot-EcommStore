@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,16 +45,22 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void createUserIfNotExists(String username, String email, String password, Set<Role> roles) {
-        userRepository.findByUserName(username).ifPresentOrElse(
-                user -> {},
-                () -> {
-                    User newUser = new User(username, email, passwordEncoder.encode(password));
-                    Set<UserRole> userRoleSet = roles.stream()
-                            .map(role -> new UserRole(newUser, role))
-                            .collect(Collectors.toSet());
-                    newUser.setUserRoles(userRoleSet);
-                    userRepository.save(newUser);
-                }
-        );
+        Optional<User> existingUser = userRepository.findByUserName(username);
+
+        if (existingUser.isEmpty()) {
+            User user = new User();
+            user.setUserName(username);
+            user.setEmail(email);
+            user.setPassword(passwordEncoder.encode(password));
+
+            for (Role role : roles) {
+                UserRole userRole = new UserRole();
+                userRole.setRole(role);
+                userRole.setUser(user);
+                user.getUserRoles().add(userRole);
+            }
+
+            userRepository.save(user);
+        }
     }
 }

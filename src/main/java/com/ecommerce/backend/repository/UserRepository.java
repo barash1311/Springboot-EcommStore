@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,6 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByEmail(String email);
     @Query("SELECT u FROM User u JOIN u.userRoles ur WHERE ur.role.roleName = :role")
     Page<User> findByRoleName(@Param("role") AppRole role, Pageable pageable);
+
     @Query("SELECT u FROM User u JOIN u.userRoles ur WHERE ur.role.roleName = 'ROLE_SELLER'")
     Page<User> findAllSellers(Pageable pageable);
 }

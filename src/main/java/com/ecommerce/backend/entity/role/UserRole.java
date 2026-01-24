@@ -25,9 +25,14 @@ public class UserRole {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private User user;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Role role;
     @CreationTimestamp
     private LocalDateTime createdAt;

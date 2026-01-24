@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class UserDetailsImplementation implements UserDetails {
     private Long id;
