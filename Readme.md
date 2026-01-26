@@ -71,10 +71,3 @@ This backend powers a modern e-commerce platform with a layered architecture:
 | Utilities | **Lombok**, **Jakarta Validation** |
 
 ---
-
-## ⚙️ Setup Instructions
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/barash1311/Springboot-EcommStore.git
-   cd Springboot-EcommStore
